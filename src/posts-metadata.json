@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "sample-post",
+    "title": "Intigriti Santa Cloud Writeup",
+    "date": "2026-04-28",
+    "tags": [
+      "CTF",
+      "Security",
+      "Web"
+    ],
+    "excerpt": "# Intigriti Santa Cloud Writeup\n\nThis is a sample writeup to demonstrate the blog site.\n\n## Introduction\nQuick directory scan revealed a `robots.txt`...",
+    "content": "\n# Intigriti Santa Cloud Writeup\n\nThis is a sample writeup to demonstrate the blog site.\n\n## Introduction\nQuick directory scan revealed a `robots.txt` file.\n\n```javascript\n// Sample code snippet\nconst fetchFlags = async () => {\n  const res = await fetch('/api/notes?user_id=1');\n  const data = await res.json();\n  console.log(data);\n};\n```\n\n## Findings\nWe found user credentials in the `composer.json~` file.\n\n- **Vulnerability**: IDOR\n- **Impact**: Information Disclosure\n"
+  }
+]
