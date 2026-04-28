@@ -47,7 +47,7 @@ There are three separate pieces here. None of them work alone. Together, they're
 
 ### Piece 1: The Preferences API Lets You Set Anything
 
-When I first poked at the `/api/account/preferences` endpoint, the app docs (such as they were) only mentioned basic settings: theme, font size, language. But then I noticed a reference in `app.js` to a `readerPresets` object. I fired a POST at the preferences endpoint with a body the UI never showed me:
+When I first poked at the preferences a request was sent to `/api/account/preferences` which only showed the basic settings: theme, font size, language. But then I noticed a reference in `app.js` to a `readerPresets` object. I fired a POST at the preferences endpoint with a body the UI never showed me:
 
 ```json
 POST /api/account/preferences
