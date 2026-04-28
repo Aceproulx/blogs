@@ -24,7 +24,13 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4, p, span, div, article, section {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 h1, h2, h3, h4 {
@@ -75,6 +81,11 @@ a:hover {
 
 .content-wrapper {
   max-width: 800px;
+  width: 100%;
+  min-width: 0; /* Critical for flex containers */
+}
+
+.post-view {
   width: 100%;
 }
 
@@ -153,7 +164,7 @@ a:hover {
 }
 
 .post-title {
-  font-size: 2.75rem;
+  font-size: clamp(1.5rem, 8vw, 2.75rem);
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1rem;
@@ -206,10 +217,27 @@ a:hover {
 
 @media (max-width: 768px) {
   .sidebar {
-    display: none; /* Mobile menu can be added later */
+    display: none;
   }
   .main-content {
     margin-left: 0;
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
+    display: block; /* Remove flex on mobile to avoid shrinking issues */
+  }
+  .content-wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .post-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .markdown-body {
+    font-size: 1.05rem;
+  }
+  .markdown-body h1 { font-size: 1.75rem; }
+  .markdown-body h2 { font-size: 1.5rem; }
+  .markdown-body img {
+    margin: 1.5rem auto;
   }
 }
