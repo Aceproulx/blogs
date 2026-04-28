@@ -1,5 +1,5 @@
 ---
-title: "Northstar Notes CtF Writeup"
+title: "Northstar Notes CTF Writeup"
 date: "2026-04-28"
 tags: ["CTF", "Security", "Web"]
 author: "Aceproulx"
@@ -15,7 +15,7 @@ author: "Aceproulx"
 
 ---
 
-## The Aha Moment
+## To begin with
 
 I almost gave up on this one.
 
@@ -244,33 +244,7 @@ Clean. No blocked words. Passes both DOMPurify and `postSanitize`. Executes on l
 
 Here's the complete picture step by step:
 
-```
-Attacker                          Server                         Admin Bot
-   │                                 │                                │
-   ├──[1] POST /api/account/prefs────►│                                │
-   │   {"readerPresets":{"exploit":  │ Stores "exploit" preset        │
-   │     {"profile":{"renderMode":   │ with full privileges           │
-   │       "full","widgetSink":       │                                │
-   │       "script",...}}}}           │                                │
-   │                                 │                                │
-   ├──[2] POST /api/notes────────────►│ Stores note with XSS payload  │
-   │   {"content":"<div id=          │ in data-cfg attribute          │
-   │    'enhance-config'...>"}        │                                │
-   │                                 │                                │
-   ├──[3] POST /api/report───────────►│ Admin bot gets the URL        │
-   │   {"url":"/note/[ID]/           │                                │
-   │    ..%2f..%2fapi%2f...exploit"}  │                                │
-   │                                 │                               │
-   │                                 │                    ┌─────────┤
-   │                                 │◄──[4] GET /note/.../exploit───┤
-   │                                 │  panel = "../../api/.../exploit"
-   │                                 │                               │
-   │                                 │◄──[5] GET /api/.../exploit/manifest.json
-   │                                 │  Returns full privilege profile
-   │                                 │                               │
-   │◄──────────────────────────────────────────────────[6] GET /?c=btoa(cookie)
-   │  Cookie received!               │                                │
-```
+![Attack Summary Diagram](/attack_summary.png)
 
 ---
 

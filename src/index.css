@@ -170,6 +170,22 @@ a:hover {
 .markdown-body h2 { font-size: 1.8rem; margin-top: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
 .markdown-body h3 { font-size: 1.5rem; margin-top: 1.5rem; }
 
+.markdown-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 2.5rem auto;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.markdown-body img:hover {
+  transform: scale(1.015) translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
 .markdown-body p {
   margin-bottom: 1.25rem;
 }
