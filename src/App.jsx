@@ -9,7 +9,7 @@ import postsMetadata from './posts-metadata.json';
 
 const Sidebar = () => (
   <div className="sidebar">
-    <div className="site-title">Trafiiik Clone</div>
+    <div className="site-title">AceProulx</div>
     <ul className="nav-links">
       <li className="nav-item">
         <Link to="/" className="nav-link"><Home size={20} /> HOME</Link>
@@ -47,7 +47,7 @@ const BlogCard = ({ post }) => (
 
 const BlogList = () => (
   <div className="blog-list">
-    <h1 style={{ marginBottom: '2rem' }}>Recent Posts</h1>
+    <h1 style={{ marginBottom: '2rem', fontSize: '2.5rem', fontWeight: '800' }}>Recent Posts</h1>
     {postsMetadata.map(post => (
       <BlogCard key={post.slug} post={post} />
     ))}
@@ -61,14 +61,14 @@ const BlogPost = () => {
   if (!post) return <div>Post not found</div>;
 
   return (
-    <div className="post-view">
-      <div className="post-header">
-        <div className="blog-meta">
-          <span>{post.date}</span>
+    <article className="post-view">
+      <header className="post-header">
+        <div className="blog-meta" style={{ marginBottom: '0.5rem' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Calendar size={14} /> {post.date}</span>
           {post.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
         </div>
         <h1 className="post-title">{post.title}</h1>
-      </div>
+      </header>
       <div className="markdown-body">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
@@ -95,7 +95,7 @@ const BlogPost = () => {
           {post.content}
         </ReactMarkdown>
       </div>
-    </div>
+    </article>
   );
 };
 
@@ -105,11 +105,13 @@ const App = () => {
       <div className="app-container">
         <Sidebar />
         <main className="main-content">
-          <Routes>
-            <Route path="/" element={<BlogList />} />
-            <Route path="/post/:slug" element={<BlogPost />} />
-            <Route path="*" element={<div>Page not found</div>} />
-          </Routes>
+          <div className="content-wrapper">
+            <Routes>
+              <Route path="/" element={<BlogList />} />
+              <Route path="/post/:slug" element={<BlogPost />} />
+              <Route path="*" element={<div>Page not found</div>} />
+            </Routes>
+          </div>
         </main>
       </div>
     </Router>
