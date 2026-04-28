@@ -417,7 +417,7 @@ s.textContent = cfg; // ← Dangerous!
 
 // Parse it as a config object:
 var config = JSON.parse(el.dataset.cfg);
-runWidget(el, config); // Widget reads fields, not executes strings
+runWidget(el, config); // Widget reads fields, not executes strings 
 ```
 
 ### Fix 4: Set Cookies as httpOnly
